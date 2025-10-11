@@ -198,6 +198,58 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    /* ====== Popup ====== */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(11, 15, 23, 0.97);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      backdrop-filter: blur(8px);
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .popup-content {
+      background: #101725;
+      padding: 40px 50px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0, 170, 255, 0.2);
+      max-width: 400px;
+    }
+
+    .popup h2 {
+      color: #00aaff;
+      margin-bottom: 10px;
+    }
+
+    .popup p {
+      color: #ccc;
+      margin-bottom: 25px;
+    }
+
+    .verify-btn {
+      background-color: #5865F2;
+      color: white;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .verify-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
+    }
+
     @media (max-width: 600px) {
       .navbar ul {
         flex-direction: column;
@@ -207,11 +259,23 @@
         flex-direction: column;
         align-items: center;
       }
+      .popup-content {
+        width: 80%;
+      }
     }
   </style>
 </head>
 
 <body>
+  <!-- Verifizierung Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>🔐 Discord Verifizierung</h2>
+      <p>Bitte bestätige, dass du unserem Discord-Server beigetreten bist,<br>um fortzufahren.</p>
+      <button class="verify-btn" onclick="verifyUser()">Mit Discord verifizieren</button>
+    </div>
+  </div>
+
   <!-- Navigation -->
   <header>
     <nav class="navbar">
@@ -251,9 +315,7 @@
       </div>
 
       <div class="member">
-        <a href="https://postimg.cc/56ttFcRR" target="_blank">
-          <img src="https://i.postimg.cc/56ttFcRR/IMG-20250902-WA0001.webp" alt="Albaner Profilbild">
-        </a>
+        <img src="https://i.postimg.cc/56ttFcRR/IMG-20250902-WA0001.webp" alt="Albaner Profilbild">
         <h3>Albaner</h3>
         <p>Owner</p>
       </div>
@@ -280,5 +342,13 @@
   <footer>
     <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten</p>
   </footer>
+
+  <script>
+    // Fake-Verifizierung
+    function verifyUser() {
+      window.open("https://discord.gg/QY8xGEmb28", "_blank");
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
 </body>
 </html>
