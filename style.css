@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0a0f1a;
+  color: #e6ecff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: rgba(0, 10, 25, 0.9);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 0 10px #0a58ca;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4da6ff;
+  text-shadow: 0 0 10px #0066ff;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #cfe2ff;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #4da6ff;
+}
+
+.discord-btn {
+  background-color: #4da6ff;
+  color: white !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 8px #4da6ff;
+}
+
+.hero {
+  text-align: center;
+  padding: 200px 20px 100px;
+  background: radial-gradient(circle, #001433 0%, #000a1a 100%);
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #4da6ff;
+  text-shadow: 0 0 10px #0055ff;
+}
+
+.hero span {
+  color: #ffffff;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #cfe2ff;
+}
+
+.team {
+  padding: 100px 20px;
+  text-align: center;
+  background-color: #0d1626;
+}
+
+.team h2 {
+  color: #4da6ff;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.member {
+  background-color: #111b2f;
+  border-radius: 15px;
+  padding: 20px;
+  width: 200px;
+  box-shadow: 0 0 10px #0a58ca;
+  transition: 0.3s;
+}
+
+.member:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #4da6ff;
+}
+
+.member img {
+  width: 100%;
+  border-radius: 50%;
+  border: 2px solid #4da6ff;
+}
+
+.rules {
+  padding: 100px 20px;
+  text-align: center;
+  background-color: #0a0f1a;
+}
+
+.rules h2 {
+  color: #4da6ff;
+  font-size: 2rem;
+}
+
+.rule-btn {
+  display: inline-block;
+  margin-top: 20px;
+  background-color: #4da6ff;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 10px #4da6ff;
+  transition: 0.3s;
+}
+
+.rule-btn:hover {
+  box-shadow: 0 0 25px #4da6ff;
+  transform: scale(1.05);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #05080f;
+  color: #cfe2ff;
+}
