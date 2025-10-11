@@ -320,6 +320,8 @@
     .member:nth-child(2) { animation-delay: 0.2s; }
     .member:nth-child(3) { animation-delay: 0.3s; }
     .member:nth-child(4) { animation-delay: 0.4s; }
+    .member:nth-child(5) { animation-delay: 0.5s; }
+    .member:nth-child(6) { animation-delay: 0.6s; }
 
     .member:hover {
       transform: translateY(-10px) scale(1.05);
@@ -594,31 +596,7 @@
   <!-- Team -->
   <section id="team" class="team-section">
     <h2>Unser Team</h2>
-    <div class="team">
-      <div class="member">
-        <img src="https://i.postimg.cc/3yM4pKVZ/Screenshot-2025-10-11-22-45-02.png" alt="Liridon Profilbild">
-        <h3>Liridon</h3>
-        <p>Co Owner</p>
-      </div>
-
-      <div class="member">
-        <img src="https://i.postimg.cc/dLDycTwH/image.png" alt="Bf Ratte">
-        <h3>Bf Ratte</h3>
-        <p>Owner</p>
-      </div>
-
-      <div class="member">
-        <img src="https://i.postimg.cc/56ttFcRR/IMG-20250902-WA0001.webp" alt="Albaner Profilbild">
-        <h3>Albaner</h3>
-        <p>Owner</p>
-      </div>
-
-      <div class="member">
-        <img src="https://via.placeholder.com/150" alt="Platzhalter">
-        <h3>Bald verfügbar</h3>
-        <p>Teammitglied</p>
-      </div>
-    </div>
+    <div class="team" id="teamContainer"></div>
   </section>
 
   <!-- Regelwerk -->
@@ -637,10 +615,66 @@
   </footer>
 
   <script>
+    // ========================================
+    // 🎯 HIER TEAM BEARBEITEN - SUPER EINFACH!
+    // ========================================
+    
+    const teamMembers = [
+      {
+        name: "Liridon",
+        role: "Owner",
+        image: "https://i.postimg.cc/3yM4pKVZ/Screenshot-2025-10-11-22-45-02.png"
+      },
+      {
+        name: "Albaner",
+        role: "Owner",
+        image: "https://i.postimg.cc/56ttFcRR/IMG-20250902-WA0001.webp"
+      },
+      {
+        name: "Bald verfügbar",
+        role: "Teammitglied",
+        image: "https://via.placeholder.com/150"
+      }
+      
+      // 📝 NEUES MITGLIED HINZUFÜGEN? Kopiere das hier:
+      /*
+      ,{
+        name: "Name hier",
+        role: "Rolle hier",
+        image: "BILD-URL hier"
+      }
+      */
+      
+      // ❌ MITGLIED LÖSCHEN? Lösche einfach den ganzen Block von { bis }
+    ];
+    
+    // ========================================
+    // ⚠️ AB HIER NICHTS MEHR ÄNDERN!
+    // ========================================
+    
+    function loadTeam() {
+      const container = document.getElementById('teamContainer');
+      container.innerHTML = '';
+      
+      teamMembers.forEach(member => {
+        const memberDiv = document.createElement('div');
+        memberDiv.className = 'member';
+        memberDiv.innerHTML = `
+          <img src="${member.image}" alt="${member.name} Profilbild">
+          <h3>${member.name}</h3>
+          <p>${member.role}</p>
+        `;
+        container.appendChild(memberDiv);
+      });
+    }
+    
     function verifyUser() {
       window.open("https://discord.gg/QY8xGEmb28", "_blank");
       document.getElementById("popup").style.display = "none";
     }
+    
+    // Team laden
+    loadTeam();
   </script>
 </body>
 </html>
