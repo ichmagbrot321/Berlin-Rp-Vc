@@ -6,35 +6,71 @@
   <title>Berlin RP VC</title>
   <link rel="icon" href="https://i.postimg.cc/7b03QzPf/Screenshot-20250925-131956-Cap-Cut-1.jpg">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     /* ====== Global Styles ====== */
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background-color: #0b0f17;
+      background: linear-gradient(135deg, #0a0a0f 0%, #0d0d16 50%, #0a0a0f 100%);
       color: #fff;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Background Particles */
+    body::before {
+      content: '';
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%);
+      animation: moveBackground 15s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes moveBackground {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(50px, 50px); }
     }
 
     h1, h2, h3 {
-      color: #00aaff;
-    }
-
-    a {
-      color: #00aaff;
-      text-decoration: none;
+      color: #3b82f6;
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
     }
 
     /* ====== Navigation ====== */
     header {
-      background: rgba(10, 14, 22, 0.9);
+      background: rgba(10, 14, 22, 0.85);
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
+      position: fixed;
+      width: 100%;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     .navbar ul {
@@ -48,154 +84,345 @@
     .navbar a {
       color: #fff;
       font-weight: 500;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #00aaff);
+      transition: width 0.3s ease;
+    }
+
+    .navbar a:hover::after {
+      width: 100%;
     }
 
     .navbar a:hover {
-      color: #00aaff;
+      color: #3b82f6;
+      text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
     }
 
     .discord-btn-top {
-      background-color: #5865F2;
-      padding: 8px 16px;
-      border-radius: 20px;
+      background: linear-gradient(135deg, #5865F2, #4752C4);
+      padding: 10px 20px;
+      border-radius: 25px;
       color: #fff;
       font-weight: 600;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
     }
 
     .discord-btn-top:hover {
-      background-color: #4752C4;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(88, 101, 242, 0.5);
     }
 
     /* ====== Hero Section ====== */
     .hero {
       text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(180deg, #0b0f17 0%, #0e1625 100%);
+      padding: 140px 20px 80px 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero .logo {
-      width: 160px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 25px rgba(0, 170, 255, 0.3);
+      width: 180px;
+      border-radius: 50%;
+      margin-bottom: 30px;
+      box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+      animation: floatLogo 3s ease-in-out infinite, pulseGlow 2s ease-in-out infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .hero .logo:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 50px rgba(59, 130, 246, 0.8),
+                    0 0 80px rgba(59, 130, 246, 0.4);
+      }
     }
 
     .hero h1 {
-      font-size: 2.4rem;
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      animation: fadeInUp 1s ease-out 0.3s both;
     }
 
     .hero span {
-      color: #00aaff;
+      background: linear-gradient(135deg, #3b82f6, #00aaff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { filter: hue-rotate(0deg); }
+      50% { filter: hue-rotate(20deg); }
     }
 
     .hero p {
-      margin-top: 10px;
-      font-size: 1.1rem;
+      margin-top: 15px;
+      font-size: 1.15rem;
       color: #ccc;
+      animation: fadeInUp 1s ease-out 0.5s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .discord-btn {
       display: inline-block;
-      margin-top: 25px;
-      background-color: #5865F2;
+      margin-top: 30px;
+      background: linear-gradient(135deg, #5865F2, #4752C4);
       color: #fff;
-      padding: 14px 28px;
-      border-radius: 30px;
+      padding: 16px 40px;
+      border-radius: 50px;
       font-weight: 600;
-      font-size: 1rem;
-      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(88, 101, 242, 0.4);
+      animation: fadeInUp 1s ease-out 0.7s both, buttonPulse 2s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .discord-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .discord-btn:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     .discord-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 50px rgba(88, 101, 242, 0.8);
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(88, 101, 242, 0.7);
+      }
+    }
+
+    /* ====== Widget Style ====== */
+    .widget-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      animation: fadeInUp 1s ease-out 0.9s both;
+    }
+
+    iframe {
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    iframe:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 60px rgba(59, 130, 246, 0.5);
     }
 
     /* ====== Team Section ====== */
     .team-section {
       text-align: center;
-      padding: 80px 20px;
+      padding: 100px 20px;
+      background: rgba(13, 13, 22, 0.5);
+      position: relative;
+      z-index: 1;
+    }
+
+    .team-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+      animation: fadeInUp 1s ease-out;
     }
 
     .team {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 40px;
-      margin-top: 30px;
+      gap: 50px;
+      margin-top: 40px;
     }
 
     .member {
-      background: #101725;
-      border-radius: 20px;
-      padding: 25px;
-      width: 200px;
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.15);
-      transition: transform 0.3s;
+      background: linear-gradient(145deg, #101725, #0d0d16);
+      border-radius: 25px;
+      padding: 30px;
+      width: 220px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
+                  0 0 20px rgba(59, 130, 246, 0.2);
+      transition: all 0.4s ease;
+      animation: fadeInUp 0.8s ease-out both;
+      position: relative;
+      overflow: hidden;
     }
 
+    .member::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s ease;
+    }
+
+    .member:hover::before {
+      left: 100%;
+    }
+
+    .member:nth-child(1) { animation-delay: 0.1s; }
+    .member:nth-child(2) { animation-delay: 0.2s; }
+    .member:nth-child(3) { animation-delay: 0.3s; }
+    .member:nth-child(4) { animation-delay: 0.4s; }
+
     .member:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6),
+                  0 0 40px rgba(59, 130, 246, 0.5);
     }
 
     .member img {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #007bff;
-      box-shadow: 0 0 12px rgba(0, 123, 255, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 4px solid #3b82f6;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+      transition: all 0.4s ease;
+      margin-bottom: 20px;
     }
 
-    .member img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 18px rgba(0, 123, 255, 0.6);
+    .member:hover img {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+      border-color: #00aaff;
     }
 
     .member h3 {
       margin-top: 15px;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
     }
 
     .member p {
       color: #aaa;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      font-weight: 300;
     }
 
     /* ====== Rules Section ====== */
     .rules-section {
       text-align: center;
-      padding: 80px 20px;
-      background: #0e1625;
+      padding: 100px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .rules-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .rules-section p {
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 30px;
     }
 
     .rules-btn {
       display: inline-block;
-      margin-top: 20px;
-      background-color: #00aaff;
+      background: linear-gradient(135deg, #3b82f6, #00aaff);
       color: #fff;
-      padding: 12px 24px;
-      border-radius: 25px;
+      padding: 14px 35px;
+      border-radius: 50px;
       font-weight: 600;
-      transition: background 0.3s, box-shadow 0.3s;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rules-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .rules-btn:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     .rules-btn:hover {
-      background-color: #0088cc;
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.4);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 50px rgba(59, 130, 246, 0.7);
     }
 
     /* ====== Footer ====== */
     footer {
       text-align: center;
-      padding: 25px;
-      background: #0b0f17;
+      padding: 30px;
+      background: linear-gradient(180deg, transparent, rgba(8, 8, 12, 0.9));
       color: #888;
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(59, 130, 246, 0.2);
+      position: relative;
+      z-index: 1;
     }
 
     /* ====== Popup ====== */
@@ -205,69 +432,128 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(11, 15, 23, 0.97);
+      background: rgba(11, 15, 23, 0.98);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      backdrop-filter: blur(8px);
-      flex-direction: column;
-      text-align: center;
+      backdrop-filter: blur(15px);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .popup-content {
-      background: #101725;
-      padding: 40px 50px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(0, 170, 255, 0.2);
-      max-width: 400px;
+      background: linear-gradient(145deg, #101725, #0d0d16);
+      padding: 50px 60px;
+      border-radius: 30px;
+      box-shadow: 0 0 50px rgba(59, 130, 246, 0.4);
+      max-width: 450px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      animation: popupScale 0.5s ease-out;
+    }
+
+    @keyframes popupScale {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .popup h2 {
-      color: #00aaff;
-      margin-bottom: 10px;
+      color: #3b82f6;
+      margin-bottom: 15px;
+      font-size: 2rem;
     }
 
     .popup p {
       color: #ccc;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
 
     .verify-btn {
-      background-color: #5865F2;
+      background: linear-gradient(135deg, #5865F2, #4752C4);
       color: white;
-      padding: 12px 28px;
+      padding: 14px 35px;
       border: none;
-      border-radius: 30px;
+      border-radius: 50px;
       font-weight: 600;
       cursor: pointer;
-      font-size: 1rem;
-      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(88, 101, 242, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .verify-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .verify-btn:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     .verify-btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(88, 101, 242, 0.5);
+      box-shadow: 0 0 50px rgba(88, 101, 242, 0.7);
     }
 
-    @media (max-width: 600px) {
+    /* ====== Responsive ====== */
+    @media (max-width: 768px) {
       .navbar ul {
         flex-direction: column;
         gap: 10px;
       }
-      .team {
-        flex-direction: column;
-        align-items: center;
+
+      .hero h1 {
+        font-size: 2rem;
       }
+
+      .widget-container iframe {
+        width: 90%;
+        height: 400px;
+      }
+
+      .member {
+        width: 180px;
+        padding: 20px;
+      }
+
       .popup-content {
-        width: 80%;
+        padding: 40px 30px;
+        margin: 20px;
       }
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
     }
   </style>
 </head>
 
 <body>
-  <!-- Verifizierung Popup -->
+  <!-- Popup -->
   <div class="popup" id="popup">
     <div class="popup-content">
       <h2>🔐 Discord Verifizierung</h2>
@@ -293,9 +579,16 @@
     <img src="https://i.postimg.cc/7b03QzPf/Screenshot-20250925-131956-Cap-Cut-1.jpg" alt="Berlin RP VC Logo" class="logo">
     <h1>Willkommen bei <span>Berlin RP VC</span></h1>
     <p>Das neue Voice-Chat Roleplay-Erlebnis mit eigenem System und starkem Team.</p>
+
     <a href="https://discord.gg/QY8xGEmb28" target="_blank" class="discord-btn">
       Discord beitreten
     </a>
+
+    <!-- Discord Widget -->
+    <div class="widget-container">
+      <iframe src="https://discord.com/widget?id=1421878115558232180&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"
+      sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </div>
   </section>
 
   <!-- Team -->
@@ -303,7 +596,7 @@
     <h2>Unser Team</h2>
     <div class="team">
       <div class="member">
-        <img src="https://i.postimg.cc/nCwqXG0y/Screenshot-2025-10-11-22-45-02.png" alt="Liridon">
+        <img src="https://i.postimg.cc/3yM4pKVZ/Screenshot-2025-10-11-22-45-02.png" alt="Liridon Profilbild">
         <h3>Liridon</h3>
         <p>Co Owner</p>
       </div>
@@ -340,11 +633,10 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten</p>
+    <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten<br>Gruß Albaner & Ratte 💙</p>
   </footer>
 
   <script>
-    // Fake-Verifizierung
     function verifyUser() {
       window.open("https://discord.gg/QY8xGEmb28", "_blank");
       document.getElementById("popup").style.display = "none";
