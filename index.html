@@ -264,11 +264,167 @@
       box-shadow: 0 0 60px rgba(59, 130, 246, 0.5);
     }
 
+    /* ====== News Section ====== */
+    .news-section {
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .news-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .news-card {
+      background: linear-gradient(145deg, #101725, #0d0d16);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
+                  0 0 20px rgba(59, 130, 246, 0.2);
+      transition: all 0.4s ease;
+      animation: fadeInUp 0.8s ease-out both;
+    }
+
+    .news-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6),
+                  0 0 40px rgba(59, 130, 246, 0.5);
+    }
+
+    .news-card .badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, #3b82f6, #00aaff);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .news-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .news-content {
+      padding: 25px;
+      text-align: left;
+    }
+
+    .news-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .news-content .date {
+      color: #888;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+
+    .news-content p {
+      color: #ccc;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    /* ====== Events/Gallery Section ====== */
+    .events-section {
+      text-align: center;
+      padding: 100px 20px;
+      background: rgba(13, 13, 22, 0.5);
+      position: relative;
+      z-index: 1;
+    }
+
+    .events-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      transition: all 0.4s ease;
+      animation: fadeInUp 0.8s ease-out both;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(59, 130, 246, 0.5);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      padding: 20px;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay h4 {
+      color: #3b82f6;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .gallery-overlay p {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
     /* ====== Team Section ====== */
     .team-section {
       text-align: center;
       padding: 100px 20px;
-      background: rgba(13, 13, 22, 0.5);
       position: relative;
       z-index: 1;
     }
@@ -316,13 +472,6 @@
       left: 100%;
     }
 
-    .member:nth-child(1) { animation-delay: 0.1s; }
-    .member:nth-child(2) { animation-delay: 0.2s; }
-    .member:nth-child(3) { animation-delay: 0.3s; }
-    .member:nth-child(4) { animation-delay: 0.4s; }
-    .member:nth-child(5) { animation-delay: 0.5s; }
-    .member:nth-child(6) { animation-delay: 0.6s; }
-
     .member:hover {
       transform: translateY(-10px) scale(1.05);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6),
@@ -362,6 +511,7 @@
     .rules-section {
       text-align: center;
       padding: 100px 20px;
+      background: rgba(13, 13, 22, 0.5);
       position: relative;
       z-index: 1;
     }
@@ -447,6 +597,10 @@
         width: 180px;
         padding: 20px;
       }
+
+      .news-grid, .gallery-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Smooth Scroll */
@@ -462,6 +616,8 @@
     <nav class="navbar">
       <ul>
         <li><a href="#home">Start</a></li>
+        <li><a href="#news">Neuigkeiten</a></li>
+        <li><a href="#events">Events</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#rules">Regelwerk</a></li>
       </ul>
@@ -484,6 +640,18 @@
       <iframe src="https://discord.com/widget?id=1421878115558232180&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"
       sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
     </div>
+  </section>
+
+  <!-- Neuigkeiten -->
+  <section id="news" class="news-section">
+    <h2>Neuigkeiten</h2>
+    <div class="news-grid" id="newsContainer"></div>
+  </section>
+
+  <!-- Event Fotos -->
+  <section id="events" class="events-section">
+    <h2>Event Galerie</h2>
+    <div class="gallery-grid" id="galleryContainer"></div>
   </section>
 
   <!-- Team -->
@@ -509,7 +677,74 @@
 
   <script>
     // ========================================
-    // 🎯 HIER TEAM BEARBEITEN - SUPER EINFACH!
+    // 🎯 HIER NEUIGKEITEN BEARBEITEN
+    // ========================================
+    
+    const newsItems = [
+      {
+        title: "Server ist online!",
+        date: "12. Oktober 2025",
+        badge: "NEU",
+        description: "Unser Berlin RP VC Server ist jetzt offiziell online! Komm vorbei und erlebe einzigartiges Roleplay.",
+        image: "https://via.placeholder.com/400x200/3b82f6/ffffff?text=Server+Start"
+      },
+      {
+        title: "Erstes Community Event",
+        date: "10. Oktober 2025",
+        badge: "EVENT",
+        description: "Unser erstes großes Community-Event war ein voller Erfolg! Danke an alle Teilnehmer.",
+        image: "https://via.placeholder.com/400x200/00aaff/ffffff?text=Community+Event"
+      }
+      
+      // 📝 NEUE NEWS HINZUFÜGEN? Kopiere das hier:
+      /*
+      ,{
+        title: "Überschrift hier",
+        date: "Datum hier",
+        badge: "NEU oder EVENT oder UPDATE",
+        description: "Beschreibung hier",
+        image: "BILD-URL hier"
+      }
+      */
+      
+      // ❌ NEWS LÖSCHEN? Lösche einfach den ganzen Block von { bis }
+    ];
+
+    // ========================================
+    // 🎯 HIER EVENT FOTOS BEARBEITEN
+    // ========================================
+    
+    const eventPhotos = [
+      {
+        title: "Halloween Event 2024",
+        description: "Gruseliges RP mit der Community",
+        image: "https://via.placeholder.com/300x250/3b82f6/ffffff?text=Halloween+Event"
+      },
+      {
+        title: "Street Racing Night",
+        description: "Illegale Straßenrennen durch Berlin",
+        image: "https://via.placeholder.com/300x250/00aaff/ffffff?text=Street+Racing"
+      },
+      {
+        title: "Polizei Razzia",
+        description: "Großeinsatz der Polizei",
+        image: "https://via.placeholder.com/300x250/5865F2/ffffff?text=Polizei+Razzia"
+      }
+      
+      // 📝 NEUES FOTO HINZUFÜGEN? Kopiere das hier:
+      /*
+      ,{
+        title: "Event Name hier",
+        description: "Kurze Beschreibung",
+        image: "BILD-URL hier"
+      }
+      */
+      
+      // ❌ FOTO LÖSCHEN? Lösche einfach den ganzen Block von { bis }
+    ];
+
+    // ========================================
+    // 🎯 HIER TEAM BEARBEITEN
     // ========================================
     
     const teamMembers = [
@@ -545,13 +780,56 @@
     // ⚠️ AB HIER NICHTS MEHR ÄNDERN!
     // ========================================
     
+    function loadNews() {
+      const container = document.getElementById('newsContainer');
+      container.innerHTML = '';
+      
+      newsItems.forEach((news, index) => {
+        const newsCard = document.createElement('div');
+        newsCard.className = 'news-card';
+        newsCard.style.animationDelay = `${index * 0.1}s`;
+        newsCard.innerHTML = `
+          <div style="position: relative; overflow: hidden;">
+            <span class="badge">${news.badge}</span>
+            <img src="${news.image}" alt="${news.title}">
+          </div>
+          <div class="news-content">
+            <h3>${news.title}</h3>
+            <p class="date">${news.date}</p>
+            <p>${news.description}</p>
+          </div>
+        `;
+        container.appendChild(newsCard);
+      });
+    }
+    
+    function loadGallery() {
+      const container = document.getElementById('galleryContainer');
+      container.innerHTML = '';
+      
+      eventPhotos.forEach((photo, index) => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.style.animationDelay = `${index * 0.1}s`;
+        galleryItem.innerHTML = `
+          <img src="${photo.image}" alt="${photo.title}">
+          <div class="gallery-overlay">
+            <h4>${photo.title}</h4>
+            <p>${photo.description}</p>
+          </div>
+        `;
+        container.appendChild(galleryItem);
+      });
+    }
+    
     function loadTeam() {
       const container = document.getElementById('teamContainer');
       container.innerHTML = '';
       
-      teamMembers.forEach(member => {
+      teamMembers.forEach((member, index) => {
         const memberDiv = document.createElement('div');
         memberDiv.className = 'member';
+        memberDiv.style.animationDelay = `${index * 0.1}s`;
         memberDiv.innerHTML = `
           <img src="${member.image}" alt="${member.name} Profilbild">
           <h3>${member.name}</h3>
@@ -561,7 +839,9 @@
       });
     }
     
-    // Team laden
+    // Alles laden
+    loadNews();
+    loadGallery();
     loadTeam();
   </script>
 </body>
