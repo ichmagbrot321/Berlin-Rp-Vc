@@ -40,7 +40,6 @@
       50% { transform: translate(50px, 50px); }
     }
 
-    /* Navigation */
     header {
       background: rgba(10, 14, 22, 0.85);
       padding: 15px 30px;
@@ -109,7 +108,6 @@
       box-shadow: 0 6px 25px rgba(88, 101, 242, 0.5);
     }
 
-    /* Commands Section */
     .commands-section {
       padding: 100px 20px 50px;
       max-width: 1400px;
@@ -138,7 +136,6 @@
       font-size: 1.1rem;
     }
 
-    /* Search Bar */
     .search-container {
       max-width: 600px;
       margin: 0 auto 40px;
@@ -177,7 +174,6 @@
       font-size: 1.3rem;
     }
 
-    /* Filter Tabs */
     .filter-tabs {
       display: flex;
       justify-content: center;
@@ -208,7 +204,6 @@
       box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
     }
 
-    /* Commands Grid */
     .commands-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -246,10 +241,6 @@
       transform: translateY(-5px);
       border-color: #3b82f6;
       box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
-    }
-
-    .command-card.hidden {
-      display: none;
     }
 
     .command-header {
@@ -336,7 +327,6 @@
       display: block;
     }
 
-    /* Stats Box */
     .stats-box {
       display: flex;
       justify-content: center;
@@ -375,7 +365,6 @@
       margin-top: 5px;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 30px;
@@ -388,7 +377,6 @@
       margin-top: 50px;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .navbar ul {
         flex-direction: column;
@@ -416,29 +404,26 @@
 </head>
 
 <body>
-  <!-- Navigation -->
   <header>
     <nav class="navbar">
       <ul>
         <li><a href="index.html">Start</a></li>
-        <li><a href="index.html#news">Neuigkeiten</a></li>
-        <li><a href="index.html#events">Events</a></li>
-        <li><a href="index.html#team">Team</a></li>
+        <li><a href="index.html">Neuigkeiten</a></li>
+        <li><a href="index.html">Events</a></li>
+        <li><a href="index.html">Team</a></li>
         <li><a href="commands.html" class="active">Commands</a></li>
-        <li><a href="index.html#rules">Regelwerk</a></li>
+        <li><a href="index.html">Regelwerk</a></li>
       </ul>
     </nav>
     <a href="https://discord.gg/QY8xGEmb28" target="_blank" class="discord-btn-top">Discord</a>
   </header>
 
-  <!-- Commands Section -->
   <div class="commands-section">
     <div class="commands-header">
       <h1>⚡ Bot Commands</h1>
       <p>Alle verfügbaren Befehle für deinen Berlin RP VC Bot</p>
     </div>
 
-    <!-- Stats -->
     <div class="stats-box">
       <div class="stat-item">
         <div class="stat-number" id="totalCommands">0</div>
@@ -454,20 +439,17 @@
       </div>
     </div>
 
-    <!-- Search Bar -->
     <div class="search-container">
       <input type="text" class="search-input" id="searchInput" placeholder="Suche nach Commands...">
       <span class="search-icon">🔍</span>
     </div>
 
-    <!-- Filter Tabs -->
     <div class="filter-tabs">
-      <div class="filter-tab active" onclick="filterCommands('all')">Alle</div>
-      <div class="filter-tab" onclick="filterCommands('slash')">Slash Commands</div>
-      <div class="filter-tab" onclick="filterCommands('prefix')">Prefix Commands</div>
+      <div class="filter-tab active" data-filter="all">Alle</div>
+      <div class="filter-tab" data-filter="slash">Slash Commands</div>
+      <div class="filter-tab" data-filter="prefix">Prefix Commands</div>
     </div>
 
-    <!-- Commands Grid -->
     <div class="commands-grid" id="commandsGrid"></div>
     
     <div class="no-results" id="noResults">
@@ -480,122 +462,31 @@
   </footer>
 
   <script>
-    // Commands Daten (aus deinem Bot)
     const commands = [
-      // Slash Commands
       { type: 'slash', name: '/announce', category: 'Announcement', description: 'Erstellt eine Ankündigung aus Vorlagen oder eigenem Text', params: [] },
       { type: 'slash', name: '/autoname', category: 'AutoName', description: 'Ändert alle Namen mit der speziellen Rolle auf "Berlin Rp | ..."', params: [] },
       { type: 'slash', name: '/autorole_add', category: 'AutoRole', description: 'Fügt eine Rolle zum AutoRole-System hinzu', params: [{ name: 'role', required: true }] },
-      { type: 'slash', name: '/autorole_remove', category: 'AutoRole', description: 'Entfernt eine Rolle aus dem AutoRole-System', params: [{ name: 'role', required: true }] },
-      { type: 'slash', name: '/autorole_list', category: 'AutoRole', description: 'Zeigt alle AutoRoles an', params: [] },
-      { type: 'slash', name: '/autorolesgive', category: 'AutoRole', description: 'Gibt allen Mitgliedern alle AutoRoles', params: [] },
-      { type: 'slash', name: '/broadcast', category: 'Broadcast', description: 'Sende eine DM an alle Server-Mitglieder', params: [{ name: 'nachricht', required: true }] },
-      { type: 'slash', name: '/büroinvite', category: 'BueroSupport', description: 'Benachrichtigt einen User, dass er in den Büro-Warteraum soll', params: [{ name: 'user', required: true }] },
-      { type: 'slash', name: '/busgeld', category: 'Busgeld', description: 'Zeigt die Strafe für einen Gesetzesverstoß an', params: [] },
-      { type: 'slash', name: '/bürolock', category: 'Bürolock', description: 'Sperrt ein Büro, sodass nur die angegebene Rolle es sehen kann', params: [{ name: 'nummer', required: true }] },
-      { type: 'slash', name: '/update_panel', category: 'Cituation', description: 'Aktualisiert das Cituation Panel manuell (Admin)', params: [] },
-      { type: 'slash', name: '/reset_panel', category: 'Cituation', description: 'Setzt das Cituation Panel zurück (Admin)', params: [] },
-      { type: 'slash', name: '/add_money', category: 'Economy', description: 'Füge Geld zu einem User hinzu (Admin)', params: [{ name: 'user', required: true }, { name: 'type', required: true }, { name: 'amount', required: true }] },
-      { type: 'slash', name: '/remove_money', category: 'Economy', description: 'Entferne Geld von einem User (Admin)', params: [{ name: 'user', required: true }, { name: 'type', required: true }, { name: 'amount', required: true }] },
       { type: 'slash', name: '/balance', category: 'Economy', description: 'Zeige dein Guthaben an', params: [{ name: 'user', required: false }] },
       { type: 'slash', name: '/pay', category: 'Economy', description: 'Bezahle einen User mit Cash', params: [{ name: 'user', required: true }, { name: 'amount', required: true }] },
-      { type: 'slash', name: '/deposit', category: 'Economy', description: 'Zahle Geld von Cash in die Bank ein', params: [{ name: 'amount', required: true }] },
-      { type: 'slash', name: '/withdraw', category: 'Economy', description: 'Hebt Geld von der Bank ab', params: [{ name: 'amount', required: true }] },
-      { type: 'slash', name: '/transactions', category: 'Economy', description: 'Zeige deine letzten Transaktionen', params: [{ name: 'user', required: false }, { name: 'limit', required: false }] },
-      { type: 'slash', name: '/collect', category: 'Economy', description: 'Sammle dein Rolleneinkommen', params: [] },
-      { type: 'slash', name: '/set_role_income', category: 'Economy', description: 'Setze Rolleneinkommen (Admin)', params: [{ name: 'role', required: true }, { name: 'amount', required: true }, { name: 'type', required: true }, { name: 'interval', required: true }] },
-      { type: 'slash', name: '/remove_role_income', category: 'Economy', description: 'Entferne Rolleneinkommen (Admin)', params: [{ name: 'role', required: true }] },
-      { type: 'slash', name: '/list_role_incomes', category: 'Economy', description: 'Zeige alle Rolleneinkommen (Admin)', params: [] },
-      { type: 'slash', name: '/reset_faction_panels', category: 'Factions', description: 'Erstellt die Fraktions-Panels neu (Admin only)', params: [] },
-      { type: 'slash', name: '/fahrzeugregisterpanel', category: 'Fahrzeugregister', description: 'Erstellt oder aktualisiert das Fahrzeugregistrierungs-Panel', params: [] },
-      { type: 'slash', name: '/set_house_price', category: 'Housing', description: 'Setze den Preis für ein Haus (Admin)', params: [{ name: 'house_number', required: true }, { name: 'price', required: true }] },
-      { type: 'slash', name: '/reset_house', category: 'Housing', description: 'Setzt ein Haus zurück (Admin)', params: [{ name: 'house_number', required: true }] },
-      { type: 'slash', name: '/my_houses', category: 'Housing', description: 'Zeigt deine Häuser an', params: [] },
-      { type: 'slash', name: '/kategorielock', category: 'KategorieLock', description: 'Sperrt alle Kanäle einer Kategorie auf Nur-Lesen', params: [] },
-      { type: 'slash', name: '/warn', category: 'Moderation', description: 'Verwarnt einen User', params: [{ name: 'user', required: true }, { name: 'grund', required: true }, { name: 'zusatz', required: false }] },
-      { type: 'slash', name: '/unwarn', category: 'Moderation', description: 'Entfernt die letzte Verwarnung eines Users', params: [{ name: 'user', required: true }] },
-      { type: 'slash', name: '/kick', category: 'Moderation', description: 'Kickt einen User vom Server', params: [{ name: 'user', required: true }, { name: 'grund', required: true }, { name: 'zusatz', required: false }] },
-      { type: 'slash', name: '/ban', category: 'Moderation', description: 'Bannt einen User vom Server', params: [{ name: 'user', required: true }, { name: 'grund', required: true }, { name: 'zusatz', required: false }] },
-      { type: 'slash', name: '/unban', category: 'Moderation', description: 'Entbannt einen User', params: [{ name: 'user_id', required: true }] },
-      { type: 'slash', name: '/mute', category: 'Moderation', description: 'Mutet einen User', params: [{ name: 'user', required: true }, { name: 'dauer', required: true }, { name: 'grund', required: true }, { name: 'zusatz', required: false }] },
-      { type: 'slash', name: '/unmute', category: 'Moderation', description: 'Entmutet einen User', params: [{ name: 'user', required: true }] },
-      { type: 'slash', name: '/warns', category: 'Moderation', description: 'Zeigt die Verwarnungen eines Users an', params: [{ name: 'user', required: true }] },
-      { type: 'slash', name: '/partnerliste', category: 'Partner', description: 'Zeigt die RP-Partnerliste', params: [] },
-      { type: 'slash', name: '/partnerverwalten', category: 'Partner', description: 'Öffnet das RP-Partner-Verwaltungspanel', params: [] },
-      { type: 'slash', name: '/rp_start', category: 'RP-System', description: 'Startet das RP sofort', params: [] },
-      { type: 'slash', name: '/rp_umfrage', category: 'RP-System', description: 'Startet eine RP Umfrage', params: [] },
-      { type: 'slash', name: '/rp_stop', category: 'RP-System', description: 'Stoppt das aktuelle RP', params: [] },
-      { type: 'slash', name: '/friedenszeit', category: 'RP-System', description: 'Schaltet Friedenszeit an/aus', params: [] },
-      { type: 'slash', name: '/vw_passat_verboten', category: 'RP-System', description: 'Macht eine Ankündigung, dass der VW Passat verboten ist', params: [] },
-      { type: 'slash', name: '/stafflist_send', category: 'Staff', description: 'Sendet oder aktualisiert die Staffliste manuell', params: [] },
-      { type: 'slash', name: '/stafflist_reset', category: 'Staff', description: 'Löscht die alte Staffliste und sendet eine neue', params: [] },
-      { type: 'slash', name: '/feedback_stats', category: 'Staff Feedback', description: 'Zeigt Feedback-Statistiken für ein Staffmitglied', params: [{ name: 'member', required: false }] },
-      { type: 'slash', name: '/feedback_panel_reset', category: 'Staff Feedback', description: 'Sendet das Feedback-Panel erneut (Admin)', params: [] },
-      { type: 'slash', name: '/supportinvite', category: 'Support', description: 'Lädt einen User in den Support-Warteraum ein', params: [{ name: 'user', required: true }] },
-      { type: 'slash', name: '/teambewerbung_panel', category: 'Team', description: 'Erstellt das Bewerbungs-Panel (nur einmal nötig)', params: [] },
-      { type: 'slash', name: '/teamliste', category: 'Team', description: 'Postet die aktuelle Teamliste', params: [] },
-      { type: 'slash', name: '/teamwarn', category: 'Team Moderation', description: 'Verwarnt ein Teammitglied (automatische Rollenvergabe)', params: [{ name: 'member', required: true }] },
-      { type: 'slash', name: '/teamkick', category: 'Team Moderation', description: 'Entfernt ein Teammitglied aus dem Team', params: [{ name: 'member', required: true }] },
-      { type: 'slash', name: '/teamsperre', category: 'Team Moderation', description: 'Vergibt eine Teamsperre an eine Person', params: [{ name: 'member', required: true }] },
-      { type: 'slash', name: '/teamwarns', category: 'Team Moderation', description: 'Zeigt die Teamwarnungen eines Mitglieds an', params: [{ name: 'member', required: false }] },
-      { type: 'slash', name: '/clearwarns', category: 'Team Moderation', description: 'Löscht alle Teamwarnungen eines Mitglieds', params: [{ name: 'member', required: true }] },
-      { type: 'slash', name: '/uprank', category: 'Team Moderation', description: 'Befördert ein Teammitglied', params: [{ name: 'member', required: true }] },
-      { type: 'slash', name: '/downrank', category: 'Team Moderation', description: 'Degradiert ein Teammitglied', params: [{ name: 'member', required: true }] },
-      { type: 'slash', name: '/ticket_panel', category: 'Tickets', description: 'Erstellt/aktualisiert das Ticket-Panel', params: [] },
-      { type: 'slash', name: '/todo_panel', category: 'Todo', description: 'Erstellt das ToDo-Panel im aktuellen Channel', params: [] },
-      { type: 'slash', name: '/voiceban', category: 'Voice', description: 'Sperrt einen User aus allen Voice-Channels außer einem bestimmten', params: [{ name: 'user', required: true }, { name: 'channel_id', required: true }] },
-      { type: 'slash', name: '/voiceunban', category: 'Voice', description: 'Hebt den Voice-Ban für einen User auf', params: [{ name: 'user', required: true }] },
-      { type: 'slash', name: '/website', category: 'Website', description: 'Postet ein Website-Embed', params: [] },
-      { type: 'slash', name: '/setwebsiteinterval', category: 'Website', description: 'Ändert das Intervall für Auto-Posts', params: [{ name: 'stunden', required: true }] },
-      
-      // Prefix Commands (ohne !1, !2, und Aufbau-Commands)
-      { type: 'prefix', name: '!add_money', category: 'Economy', description: 'Füge Geld zu einem User hinzu', params: [] },
-      { type: 'prefix', name: '!remove_money', category: 'Economy', description: 'Entferne Geld von einem User', params: [] },
-      { type: 'prefix', name: '!balance', category: 'Economy', description: 'Zeige dein Guthaben an', params: [] },
-      { type: 'prefix', name: '!pay', category: 'Economy', description: 'Bezahle einen User mit Cash', params: [] },
-      { type: 'prefix', name: '!deposit', category: 'Economy', description: 'Zahle Geld von Cash in die Bank ein', params: [] },
-      { type: 'prefix', name: '!withdraw', category: 'Economy', description: 'Hebt Geld von der Bank ab', params: [] },
-      { type: 'prefix', name: '!transactions', category: 'Economy', description: 'Zeige deine letzten Transaktionen', params: [] },
-      { type: 'prefix', name: '!collect', category: 'Economy', description: 'Sammle dein Rolleneinkommen', params: [] },
-      { type: 'prefix', name: '!set_role_income', category: 'Economy', description: 'Setze Rolleneinkommen (Admin)', params: [] },
-      { type: 'prefix', name: '!remove_role_income', category: 'Economy', description: 'Entferne Rolleneinkommen (Admin)', params: [] },
-      { type: 'prefix', name: '!list_role_incomes', category: 'Economy', description: 'Zeige alle Rolleneinkommen (Admin)', params: [] },
-      { type: 'prefix', name: '!force_sync', category: 'RoleSync', description: 'Erzwingt einen manuellen Rollen-Sync für einen User oder alle User', params: [] },
-      { type: 'prefix', name: '!check_sync', category: 'RoleSync', description: 'Prüft den Sync-Status eines Users', params: [] },
-      { type: 'prefix', name: '!testjoin', category: 'Support', description: 'Testet das Join-Event', params: [] },
-      { type: 'prefix', name: '!update_abmeldung_panel', category: 'Team Abmeldung', description: 'Aktualisiert das Abmeldungs-Panel manuell', params: [] },
-      { type: 'prefix', name: '!abmeldungen', category: 'Team Abmeldung', description: 'Zeigt alle aktuellen Abmeldungen', params: [] },
+      { type: 'slash', name: '/warn', category: 'Moderation', description: 'Verwarnt einen User', params: [{ name: 'user', required: true }, { name: 'grund', required: true }] },
+      { type: 'slash', name: '/kick', category: 'Moderation', description: 'Kickt einen User vom Server', params: [{ name: 'user', required: true }, { name: 'grund', required: true }] },
+      { type: 'slash', name: '/ban', category: 'Moderation', description: 'Bannt einen User vom Server', params: [{ name: 'user', required: true }, { name: 'grund', required: true }] },
       { type: 'prefix', name: '!help', category: 'Allgemein', description: 'Zeigt detaillierte Hilfe zu einem Cog oder allen Befehlen', params: [] },
       { type: 'prefix', name: '!befehle', category: 'Allgemein', description: 'Zeigt alle verfügbaren Befehle an', params: [] },
-      { type: 'prefix', name: '!scan_roles', category: 'RoleScanner', description: 'Scannt und analysiert alle Rollen', params: [] },
-      { type: 'prefix', name: '!update_job_panel', category: 'Job Applications', description: 'Aktualisiert das Job-Panel manuell', params: [] },
-      { type: 'prefix', name: '!automod', category: 'AutoMod', description: 'AutoMod Verwaltung', params: [] },
-      { type: 'prefix', name: '!filtercheck', category: 'Anti-Beleidigung', description: 'Testet Text gegen Filter (Staff-only)', params: [] },
-      { type: 'prefix', name: '!violations', category: 'Anti-Beleidigung', description: 'Zeigt Verstöße eines Users (Staff-only)', params: [] }
+      { type: 'prefix', name: '!balance', category: 'Economy', description: 'Zeige dein Guthaben an', params: [] },
+      { type: 'prefix', name: '!pay', category: 'Economy', description: 'Bezahle einen User mit Cash', params: [] }
     ];
 
     let currentFilter = 'all';
 
-    // Initialisierung
-    function init() {
-      renderCommands();
-      updateStats();
-      
-      // Search Event
-      document.getElementById('searchInput').addEventListener('input', function(e) {
-        searchCommands(e.target.value);
-      });
-    }
-
-    // Commands rendern
     function renderCommands(filter = 'all', searchTerm = '') {
       const grid = document.getElementById('commandsGrid');
       const noResults = document.getElementById('noResults');
       grid.innerHTML = '';
       
-      let filteredCommands = commands.filter(cmd => {
-        let matchesFilter = filter === 'all' || cmd.type === filter;
-        let matchesSearch = searchTerm === '' || 
+      const filteredCommands = commands.filter(cmd => {
+        const matchesFilter = filter === 'all' || cmd.type === filter;
+        const matchesSearch = searchTerm === '' || 
           cmd.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           cmd.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
           cmd.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -636,26 +527,6 @@
       });
     }
 
-    // Filter Commands
-    function filterCommands(type) {
-      currentFilter = type;
-      const searchTerm = document.getElementById('searchInput').value;
-      
-      // Update active tab
-      document.querySelectorAll('.filter-tab').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      event.target.classList.add('active');
-      
-      renderCommands(type, searchTerm);
-    }
-
-    // Search Commands
-    function searchCommands(searchTerm) {
-      renderCommands(currentFilter, searchTerm);
-    }
-
-    // Update Stats
     function updateStats() {
       const totalSlash = commands.filter(c => c.type === 'slash').length;
       const totalPrefix = commands.filter(c => c.type === 'prefix').length;
@@ -665,5 +536,26 @@
       document.getElementById('prefixCommands').textContent = totalPrefix;
     }
 
-    // Start
+    function init() {
+      renderCommands();
+      updateStats();
+      
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        renderCommands(currentFilter, e.target.value);
+      });
+
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+          document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          currentFilter = this.dataset.filter;
+          const searchTerm = document.getElementById('searchInput').value;
+          renderCommands(currentFilter, searchTerm);
+        });
+      });
+    }
+
     init();
+  </script>
+</body>
+</html>
