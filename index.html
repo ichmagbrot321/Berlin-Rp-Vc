@@ -14,16 +14,15 @@
       box-sizing: border-box;
     }
 
-    /* ====== Global Styles ====== */
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #0a0a0f 0%, #0d0d16 50%, #0a0a0f 100%);
       color: #fff;
       overflow-x: hidden;
       position: relative;
+      min-height: 100vh;
     }
 
-    /* Animated Background Particles */
     body::before {
       content: '';
       position: fixed;
@@ -46,7 +45,7 @@
       text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
     }
 
-    /* ====== Navigation ====== */
+    /* Navigation */
     header {
       background: rgba(10, 14, 22, 0.85);
       padding: 15px 30px;
@@ -63,14 +62,8 @@
     }
 
     @keyframes slideDown {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     .navbar ul {
@@ -88,6 +81,7 @@
       position: relative;
       padding: 5px 0;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .navbar a::after {
@@ -105,7 +99,7 @@
       width: 100%;
     }
 
-    .navbar a:hover {
+    .navbar a:hover, .navbar a.active {
       color: #3b82f6;
       text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
     }
@@ -126,12 +120,29 @@
       box-shadow: 0 6px 25px rgba(88, 101, 242, 0.5);
     }
 
-    /* ====== Hero Section ====== */
-    .hero {
-      text-align: center;
-      padding: 140px 20px 80px 20px;
+    /* Page Container */
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding-top: 80px;
       position: relative;
       z-index: 1;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
     }
 
     .hero .logo {
@@ -153,19 +164,13 @@
     }
 
     @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 50px rgba(59, 130, 246, 0.8),
-                    0 0 80px rgba(59, 130, 246, 0.4);
-      }
+      0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+      50% { box-shadow: 0 0 50px rgba(59, 130, 246, 0.8), 0 0 80px rgba(59, 130, 246, 0.4); }
     }
 
     .hero h1 {
       font-size: 2.8rem;
       margin-bottom: 15px;
-      animation: fadeInUp 1s ease-out 0.3s both;
     }
 
     .hero span {
@@ -173,30 +178,12 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: gradientShift 3s ease infinite;
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { filter: hue-rotate(0deg); }
-      50% { filter: hue-rotate(20deg); }
     }
 
     .hero p {
       margin-top: 15px;
       font-size: 1.15rem;
       color: #ccc;
-      animation: fadeInUp 1s ease-out 0.5s both;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .discord-btn {
@@ -210,7 +197,6 @@
       font-size: 1.1rem;
       transition: all 0.3s ease;
       box-shadow: 0 0 30px rgba(88, 101, 242, 0.4);
-      animation: fadeInUp 1s ease-out 0.7s both, buttonPulse 2s ease-in-out infinite;
       position: relative;
       overflow: hidden;
       text-decoration: none;
@@ -239,21 +225,10 @@
       box-shadow: 0 0 50px rgba(88, 101, 242, 0.8);
     }
 
-    @keyframes buttonPulse {
-      0%, 100% {
-        box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 40px rgba(88, 101, 242, 0.7);
-      }
-    }
-
-    /* ====== Widget Style ====== */
     .widget-container {
       display: flex;
       justify-content: center;
       margin-top: 50px;
-      animation: fadeInUp 1s ease-out 0.9s both;
     }
 
     iframe {
@@ -267,20 +242,18 @@
       box-shadow: 0 0 60px rgba(59, 130, 246, 0.5);
     }
 
-    /* ====== News Section ====== */
-    .news-section {
+    /* Content Section */
+    .content-section {
       text-align: center;
       padding: 100px 20px;
-      position: relative;
-      z-index: 1;
     }
 
-    .news-section h2 {
+    .content-section h2 {
       font-size: 2.5rem;
       margin-bottom: 60px;
-      animation: fadeInUp 1s ease-out;
     }
 
+    /* News Grid */
     .news-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -293,16 +266,13 @@
       background: linear-gradient(145deg, #101725, #0d0d16);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
-                  0 0 20px rgba(59, 130, 246, 0.2);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
       transition: all 0.4s ease;
-      animation: fadeInUp 0.8s ease-out both;
     }
 
     .news-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6),
-                  0 0 40px rgba(59, 130, 246, 0.5);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.5);
     }
 
     .news-card .badge {
@@ -350,21 +320,7 @@
       font-size: 0.95rem;
     }
 
-    /* ====== Events/Gallery Section ====== */
-    .events-section {
-      text-align: center;
-      padding: 100px 20px;
-      background: rgba(13, 13, 22, 0.5);
-      position: relative;
-      z-index: 1;
-    }
-
-    .events-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 60px;
-      animation: fadeInUp 1s ease-out;
-    }
-
+    /* Gallery Grid */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -379,7 +335,6 @@
       overflow: hidden;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
       transition: all 0.4s ease;
-      animation: fadeInUp 0.8s ease-out both;
     }
 
     .gallery-item:hover {
@@ -424,39 +379,27 @@
       font-size: 0.9rem;
     }
 
-    /* ====== Team Section ====== */
-    .team-section {
-      text-align: center;
-      padding: 100px 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .team-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 60px;
-      animation: fadeInUp 1s ease-out;
-    }
-
+    /* Team */
     .team {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 50px;
-      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
     .member {
       background: linear-gradient(145deg, #101725, #0d0d16);
-      border-radius: 25px;
-      padding: 30px;
-      width: 220px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
-                  0 0 20px rgba(59, 130, 246, 0.2);
+      border-radius: 20px;
+      padding: 25px 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
       transition: all 0.4s ease;
-      animation: fadeInUp 0.8s ease-out both;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .member::before {
@@ -477,19 +420,18 @@
 
     .member:hover {
       transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6),
-                  0 0 40px rgba(59, 130, 246, 0.5);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 40px rgba(59, 130, 246, 0.5);
     }
 
     .member img {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid #3b82f6;
+      border: 3px solid #3b82f6;
       box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
       transition: all 0.4s ease;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .member:hover img {
@@ -499,30 +441,23 @@
     }
 
     .member h3 {
-      margin-top: 15px;
-      font-size: 1.3rem;
-      margin-bottom: 8px;
+      margin-top: 10px;
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      text-align: center;
     }
 
     .member p {
       color: #aaa;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 300;
+      text-align: center;
     }
 
-    /* ====== Rules Section ====== */
+    /* Rules */
     .rules-section {
       text-align: center;
       padding: 100px 20px;
-      background: rgba(13, 13, 22, 0.5);
-      position: relative;
-      z-index: 1;
-    }
-
-    .rules-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      animation: fadeInUp 1s ease-out;
     }
 
     .rules-section p {
@@ -569,7 +504,7 @@
       box-shadow: 0 0 50px rgba(59, 130, 246, 0.7);
     }
 
-    /* ====== Footer ====== */
+    /* Footer */
     footer {
       text-align: center;
       padding: 30px;
@@ -581,7 +516,7 @@
       z-index: 1;
     }
 
-    /* ====== Responsive ====== */
+    /* Responsive */
     @media (max-width: 768px) {
       .navbar ul {
         flex-direction: column;
@@ -597,9 +532,18 @@
         height: 400px;
       }
 
+      .team {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+      }
+
       .member {
-        width: 180px;
-        padding: 20px;
+        padding: 20px 15px;
+      }
+
+      .member img {
+        width: 100px;
+        height: 100px;
       }
 
       .news-grid, .gallery-grid {
@@ -607,9 +551,16 @@
       }
     }
 
-    /* Smooth Scroll */
-    html {
-      scroll-behavior: smooth;
+    @media (min-width: 769px) and (max-width: 1200px) {
+      .team {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      }
+    }
+
+    @media (min-width: 1201px) {
+      .team {
+        grid-template-columns: repeat(5, 1fr);
+      }
     }
   </style>
 </head>
@@ -619,69 +570,88 @@
   <header>
     <nav class="navbar">
       <ul>
-        <li><a href="#home">Start</a></li>
-        <li><a href="#news">Neuigkeiten</a></li>
-        <li><a href="#events">Events</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#rules">Regelwerk</a></li>
+        <li><a onclick="showPage('home')" class="active">Start</a></li>
+        <li><a onclick="showPage('news')">Neuigkeiten</a></li>
+        <li><a onclick="showPage('events')">Events</a></li>
+        <li><a onclick="showPage('team')">Team</a></li>
+        <li><a onclick="showPage('rules')">Regelwerk</a></li>
       </ul>
     </nav>
     <a href="https://discord.gg/QY8xGEmb28" target="_blank" class="discord-btn-top">Discord</a>
   </header>
 
-  <!-- Startseite -->
-  <section id="home" class="hero">
-    <img src="https://i.postimg.cc/7b03QzPf/Screenshot-20250925-131956-Cap-Cut-1.jpg" alt="Berlin RP VC Logo" class="logo">
-    <h1>Willkommen bei <span>Berlin RP VC</span></h1>
-    <p>Das neue Voice-Chat Roleplay-Erlebnis mit eigenem System und starkem Team.</p>
+  <!-- HOME PAGE -->
+  <div id="home" class="page active">
+    <section class="hero">
+      <img src="https://i.postimg.cc/7b03QzPf/Screenshot-20250925-131956-Cap-Cut-1.jpg" alt="Berlin RP VC Logo" class="logo">
+      <h1>Willkommen bei <span>Berlin RP VC</span></h1>
+      <p>Das neue Voice-Chat Roleplay-Erlebnis mit eigenem System und starkem Team.</p>
 
-    <a href="https://discord.gg/QY8xGEmb28" target="_blank" class="discord-btn">
-      Discord beitreten
-    </a>
+      <a href="https://discord.gg/QY8xGEmb28" target="_blank" class="discord-btn">
+        Discord beitreten
+      </a>
 
-    <!-- Discord Widget -->
-    <div class="widget-container">
-      <iframe src="https://discord.com/widget?id=1421878115558232180&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"
-      sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-    </div>
-  </section>
+      <div class="widget-container">
+        <iframe src="https://discord.com/widget?id=1421878115558232180&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+      </div>
+    </section>
+    <footer>
+      <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten<br>Gruß Albaner & Ratte 💙</p>
+    </footer>
+  </div>
 
-  <!-- Neuigkeiten -->
-  <section id="news" class="news-section">
-    <h2>Neuigkeiten</h2>
-    <div class="news-grid" id="newsContainer"></div>
-  </section>
+  <!-- NEWS PAGE -->
+  <div id="news" class="page">
+    <section class="content-section">
+      <h2>Neuigkeiten</h2>
+      <div class="news-grid" id="newsContainer"></div>
+    </section>
+    <footer>
+      <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten<br>Gruß Albaner & Ratte 💙</p>
+    </footer>
+  </div>
 
-  <!-- Event Fotos -->
-  <section id="events" class="events-section">
-    <h2>Event Galerie</h2>
-    <div class="gallery-grid" id="galleryContainer"></div>
-  </section>
+  <!-- EVENTS PAGE -->
+  <div id="events" class="page">
+    <section class="content-section">
+      <h2>Event Galerie</h2>
+      <div class="gallery-grid" id="galleryContainer"></div>
+    </section>
+    <footer>
+      <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten<br>Gruß Albaner & Ratte 💙</p>
+    </footer>
+  </div>
 
-  <!-- Team -->
-  <section id="team" class="team-section">
-    <h2>Unser Team</h2>
-    <div class="team" id="teamContainer"></div>
-  </section>
+  <!-- TEAM PAGE -->
+  <div id="team" class="page">
+    <section class="content-section">
+      <h2>Unser Team</h2>
+      <div class="team" id="teamContainer"></div>
+    </section>
+    <footer>
+      <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten<br>Gruß Albaner & Ratte 💙</p>
+    </footer>
+  </div>
 
-  <!-- Regelwerk -->
-  <section id="rules" class="rules-section">
-    <h2>Regelwerk</h2>
-    <p>Hier findest du unser offizielles Regelwerk:</p>
-    <a href="https://docs.google.com/document/d/1BB_8MKJAvUHogAS1aTfQFg4FvKDRW9hx41mkGvuk-lk/edit?usp=sharing"
-       target="_blank" class="rules-btn">
-       Regelwerk anzeigen
-    </a>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten<br>Gruß Albaner & Ratte 💙</p>
-  </footer>
+  <!-- RULES PAGE -->
+  <div id="rules" class="page">
+    <section class="rules-section">
+      <h2>Regelwerk</h2>
+      <p>Hier findest du unser offizielles Regelwerk:</p>
+      <a href="https://docs.google.com/document/d/1BB_8MKJAvUHogAS1aTfQFg4FvKDRW9hx41mkGvuk-lk/edit?usp=sharing"
+         target="_blank" class="rules-btn">
+         Regelwerk anzeigen
+      </a>
+    </section>
+    <footer>
+      <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten<br>Gruß Albaner & Ratte 💙</p>
+    </footer>
+  </div>
 
   <script>
     // ========================================
-    // 🎯 HIER NEUIGKEITEN BEARBEITEN
+    // 🎯 DATEN BEARBEITEN
     // ========================================
     
     const newsItems = [
@@ -699,25 +669,8 @@
         description: "Unser erstes großes Community-Event war ein voller Erfolg! Danke an alle Teilnehmer.",
         image: "https://via.placeholder.com/400x200/00aaff/ffffff?text=Community+Event"
       }
-      
-      // 📝 NEUE NEWS HINZUFÜGEN? Kopiere das hier:
-      /*
-      ,{
-        title: "Überschrift hier",
-        date: "Datum hier",
-        badge: "NEU oder EVENT oder UPDATE",
-        description: "Beschreibung hier",
-        image: "BILD-URL hier"
-      }
-      */
-      
-      // ❌ NEWS LÖSCHEN? Lösche einfach den ganzen Block von { bis }
     ];
 
-    // ========================================
-    // 🎯 HIER EVENT FOTOS BEARBEITEN
-    // ========================================
-    
     const eventPhotos = [
       {
         title: "Bald verfügbar",
@@ -734,23 +687,8 @@
         description: "Bald verfügbar",
         image: "https://via.placeholder.com/300x250/5865F2/ffffff?text=Polizei+Razzia"
       }
-      
-      // 📝 NEUES FOTO HINZUFÜGEN? Kopiere das hier:
-      /*
-      ,{
-        title: "Event Name hier",
-        description: "Kurze Beschreibung",
-        image: "BILD-URL hier"
-      }
-      */
-      
-      // ❌ FOTO LÖSCHEN? Lösche einfach den ganzen Block von { bis }
     ];
 
-    // ========================================
-    // 🎯 HIER TEAM BEARBEITEN - ✅ KORRIGIERT
-    // ========================================
-    
     const teamMembers = [
       {
         name: "Liridon",
@@ -772,22 +710,31 @@
         role: "Owner",
         image: "https://i.postimg.cc/G3MSNfF2/9-FE9-D97-E-43-CF-48-F6-8-F5-C-93-A418-B64355.jpg"
       }
-      
-      
-      // 📝 NEUES MITGLIED HINZUFÜGEN? Kopiere das hier:
-      /*
-      ,{
-        name: "Name hier",
-        role: "Rolle hier",
-        image: "BILD-URL hier"
-      }
-      */
-      
-      // ❌ MITGLIED LÖSCHEN? Lösche einfach den ganzen Block von { bis }
     ];
     
     // ========================================
-    // ⚠️ AB HIER NICHTS MEHR ÄNDERN!
+    // PAGE NAVIGATION
+    // ========================================
+    
+    function showPage(pageId) {
+      // Hide all pages
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      
+      // Show selected page
+      document.getElementById(pageId).classList.add('active');
+      
+      // Update navbar active state
+      const links = document.querySelectorAll('.navbar a');
+      links.forEach(link => link.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+    
+    // ========================================
+    // LOAD CONTENT
     // ========================================
     
     function loadNews() {
@@ -797,7 +744,6 @@
       newsItems.forEach((news, index) => {
         const newsCard = document.createElement('div');
         newsCard.className = 'news-card';
-        newsCard.style.animationDelay = `${index * 0.1}s`;
         newsCard.innerHTML = `
           <div style="position: relative; overflow: hidden;">
             <span class="badge">${news.badge}</span>
@@ -820,7 +766,6 @@
       eventPhotos.forEach((photo, index) => {
         const galleryItem = document.createElement('div');
         galleryItem.className = 'gallery-item';
-        galleryItem.style.animationDelay = `${index * 0.1}s`;
         galleryItem.innerHTML = `
           <img src="${photo.image}" alt="${photo.title}">
           <div class="gallery-overlay">
@@ -839,7 +784,6 @@
       teamMembers.forEach((member, index) => {
         const memberDiv = document.createElement('div');
         memberDiv.className = 'member';
-        memberDiv.style.animationDelay = `${index * 0.1}s`;
         memberDiv.innerHTML = `
           <img src="${member.image}" alt="${member.name} Profilbild">
           <h3>${member.name}</h3>
@@ -849,7 +793,7 @@
       });
     }
     
-    // Alles laden
+    // Load all content on page load
     loadNews();
     loadGallery();
     loadTeam();
