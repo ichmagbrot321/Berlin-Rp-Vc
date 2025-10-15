@@ -600,7 +600,9 @@
       { type: 'prefix', name: '!update_job_panel', category: 'Job Applications', description: 'Aktualisiert das Job-Panel manuell', params: [] },
       { type: 'prefix', name: '!automod', category: 'AutoMod', description: 'AutoMod Verwaltung', params: [] },
       { type: 'prefix', name: '!filtercheck', category: 'Anti-Beleidigung', description: 'Testet Text gegen Filter (Staff-only)', params: [] },
-      { type: 'prefix', name: '!violations', category: 'Anti-Beleidigung', description: 'Zeigt Verstöße eines Users (Staff-only)', params: [] }
+      { type: 'prefix', name: '!violations', category: 'Anti-Beleidigung', description: 'Zeigt Verstöße eines Users (Staff-only)', params: [] },
+      { type: 'prefix', name: '!appeal', category: 'Support', description: 'Erstellt eine Entbannungsanfrage oder Beschwerde (DM an Support)', params: [] },
+      { type: 'prefix', name: '!ticket <anliegen>', category: 'Support', description: 'Erstellt ein privates Ticket und sendet das Anliegen an den Support per DM', params: ['anliegen'] }
     ];
 
     let currentFilter = 'all';
