@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berlin RP VC - Regelwerk</title>
+  <link rel="icon" href="https://i.postimg.cc/7b03QzPf/Screenshot-20250925-131956-Cap-Cut-1.jpg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0a0a0f 0%, #0d0d16 50%, #0a0a0f 100%);
+      color: #fff;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(0, 170, 255, 0.1) 0%, transparent 50%);
+      animation: moveBackground 15s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes moveBackground {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(50px, 50px); }
+    }
+
+    header {
+      background: rgba(10, 14, 22, 0.85);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .back-btn {
+      background: linear-gradient(135deg, #3b82f6, #00aaff);
+      padding: 10px 20px;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+    }
+
+    .rules-container {
+      max-width: 1000px;
+      margin: 100px auto 60px;
+      padding: 40px;
+      background: linear-gradient(145deg, #101725, #0d0d16);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      color: #3b82f6;
+      text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    h2 {
+      color: #3b82f6;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(59, 130, 246, 0.3);
+    }
+
+    h3 {
+      color: #00aaff;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    p, li {
+      color: #ccc;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      padding-left: 25px;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    ul li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #3b82f6;
+      font-weight: bold;
+    }
+
+    .rule-number {
+      color: #3b82f6;
+      font-weight: 600;
+    }
+
+    .warning-box {
+      background: rgba(255, 68, 68, 0.1);
+      border-left: 4px solid #ff4444;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+
+    .info-box {
+      background: rgba(59, 130, 246, 0.1);
+      border-left: 4px solid #3b82f6;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+
+    .success-box {
+      background: rgba(34, 197, 94, 0.1);
+      border-left: 4px solid #22c55e;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+
+    strong {
+      color: #fff;
+    }
+
+    .emoji {
+      font-size: 1.2rem;
+      margin-right: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #888;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    footer a {
+      color: #3b82f6;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #00aaff;
+      text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .rules-container {
+        margin: 80px 20px 40px;
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+  </header>
+
+  <div class="rules-container">
+    <h1>📜 Berlin RP Regelwerk</h1>
+
+    <h2>1. Allgemeine Regeln</h2>
+    
+    <h3><span class="rule-number">1.1</span> Respekt & Umgangston</h3>
+    <p>Jeder Nutzer muss sich respektvoll, freundlich und tolerant gegenüber anderen Spielern und Teammitgliedern verhalten.</p>
+
+    <h3><span class="rule-number">1.2</span> Beleidigungen & Diskriminierung</h3>
+    <p>Jegliche Form von Beleidigung, Rassismus, Sexismus oder Diskriminierung ist strengstens untersagt.</p>
+
+    <h3><span class="rule-number">1.3</span> Werbung</h3>
+    <p>Eigenwerbung (z. B. für andere Server, YouTube, Twitch) ist nur mit ausdrücklicher Genehmigung des Teams erlaubt.</p>
+
+    <h3><span class="rule-number">1.4</span> Realistische Namen & Verhalten</h3>
+    <p>Unrealistische Namen oder Verhaltensweisen (z. B. „DripBoy99", Clown-RP) sind untersagt.</p>
+
+    <h3><span class="rule-number">1.5</span> Stimme & Verhalten im VC</h3>
+    <p>Stimmenverzerrer, Soundboards, dauerhaftes Schreien oder Singen sind verboten.</p>
+
+    <h2>2. Roleplay-Regeln</h2>
+
+    <h3><span class="rule-number">2.1</span> RDM / VDM Verbot</h3>
+    <ul>
+      <li><strong>RDM:</strong> Grundloses Töten anderer Spieler ist verboten.</li>
+      <li><strong>VDM:</strong> Mit Absicht andere Spieler mit einem Fahrzeug zu überfahren, ist untersagt.</li>
+    </ul>
+
+    <h3><span class="rule-number">2.2</span> Fail-RP Verbot</h3>
+    <p>Unrealistische Handlungen (z. B. „Ich ziehe ein MG aus meiner Jacke") sind nicht erlaubt.</p>
+
+    <h3><span class="rule-number">2.3</span> Power-RP Verbot</h3>
+    <p>Du darfst Handlungen nicht erzwingen, ohne dem Gegenüber Reaktionsmöglichkeiten zu lassen (z. B. „Ich fessele dich, du kannst dich nicht wehren").</p>
+
+    <h3><span class="rule-number">2.4</span> Fear-RP Pflicht</h3>
+    <p>Du musst Angst zeigen, wenn du in Lebensgefahr bist. Niemand ist unsterblich oder übermenschlich.</p>
+
+    <h3><span class="rule-number">2.5</span> New-Life-Regel (NLR)</h3>
+    <p>Nach deinem Tod darfst du dich nicht an frühere Ereignisse erinnern oder an den Todesort zurückkehren.</p>
+
+    <h3><span class="rule-number">2.6</span> Meta-Gaming Verbot</h3>
+    <p>Informationen aus Discord, Streams oder anderen Quellen dürfen nicht im RP verwendet werden.</p>
+
+    <h3><span class="rule-number">2.7</span> Combat-Logging</h3>
+    <p>Das Verlassen des Servers während einer RP-Situation ist strengstens verboten.</p>
+
+    <h3><span class="rule-number">2.8</span> Cop-Baiting Verbot</h3>
+    <p>Provokationen, um absichtlich die Polizei herauszufordern (z. B. Driften vor der Wache), sind untersagt.</p>
+
+    <h3><span class="rule-number">2.9</span> Gang-RP Regeln</h3>
+    <ul>
+      <li>Nur mit Team-Genehmigung erlaubt</li>
+      <li>Mindestens 3 Mitglieder müssen gleichzeitig online sein</li>
+      <li>Waffen dürfen nicht offen getragen werden, außer bei Überfällen mit /me oder /do</li>
+      <li>Fraktionen dürfen nicht dauerhaft bedroht oder ausgeraubt werden</li>
+    </ul>
+
+    <h3><span class="rule-number">2.10</span> Überfälle</h3>
+    <ul>
+      <li>Müssen RP-basiert und mit Aufbau erfolgen</li>
+      <li>„Hände hoch oder du bist tot" reicht nicht aus</li>
+      <li>Max. Beute: 10.000 € pro Person</li>
+      <li>Überfälle auf Feuerwehr oder Notärzte sind verboten</li>
+    </ul>
+
+    <h3><span class="rule-number">2.11</span> Geiselnahmen & Entführungen</h3>
+    <ul>
+      <li>Nur erlaubt, wenn mindestens 4 Cops online sind</li>
+      <li>Keine Geiselnahmen während der Friedenszeit</li>
+      <li>Es muss ein RP-Ziel geben – kein Random-Kidnapping</li>
+      <li>Wiederholte Entführungen derselben Person sind nicht erlaubt</li>
+    </ul>
+
+    <h3><span class="rule-number">2.12</span> Schutz ziviler Fraktionen</h3>
+    <p>Feuerwehr, Sanitäter, Busfahrer, ADAC, LKW-Fahrer u. Ä. dürfen nicht bedroht, beraubt oder als Geiseln genommen werden.</p>
+
+    <h3><span class="rule-number">2.13</span> Fluchtverhalten</h3>
+    <ul>
+      <li>Keine unrealistischen Fluchtwege (z. B. aufs Dach springen)</li>
+      <li>Kein Server-Leave, Desync, oder Ausnutzen von Bugs</li>
+      <li>Kein Missbrauch von /e-Anims zur Flucht oder im Kampf</li>
+    </ul>
+
+    <h3><span class="rule-number">2.14</span> Charaktertod / Todes-RP</h3>
+    <ul>
+      <li>Nach bewusstem Charaktertod ist der Charakter nicht mehr spielbar</li>
+      <li>Neue Charaktere brauchen neuen Namen & Hintergrund</li>
+      <li>„Ich bin sein Zwillingsbruder" zählt nicht</li>
+    </ul>
+
+    <h3><span class="rule-number">2.15</span> Medizinisches RP</h3>
+    <ul>
+      <li>"Totstellen" ohne medizinisches RP ist Fail-RP</li>
+      <li>Schwerverletzte müssen behandelt werden</li>
+      <li>Taser- oder Pfefferspray-KO muss ausgespielt werden</li>
+    </ul>
+
+    <h3><span class="rule-number">2.16</span> Realitätsbezug & Ernsthaftigkeit</h3>
+    <ul>
+      <li>RP basiert auf realer Welt (Hamburg, modernes Gesetz)</li>
+      <li>Keine Fantasy-, Superhelden- oder Zauber-Elemente</li>
+    </ul>
+
+    <h3><span class="rule-number">2.17</span> Pflicht zur Verhandlung</h3>
+    <p>Bei Banküberfällen, Geiselnahmen o. ä. muss mit der Polizei verhandelt werden. Kein sofortiger Schusswechsel!</p>
+
+    <h3><span class="rule-number">2.18</span> Illegal-RP</h3>
+    <ul>
+      <li>Nur an abgelegenen Orten erlaubt</li>
+      <li>Keine Drogenübergaben im Stadtzentrum</li>
+      <li>Kein Verkauf an Fraktionen oder Anfänger</li>
+    </ul>
+
+    <h3><span class="rule-number">2.19</span> Mod-Ruf Pflicht</h3>
+    <p>Wenn ein Spieler dies verlangt, muss ein Moderator hinzugezogen werden.</p>
+
+    <h3><span class="rule-number">2.20</span> Ausweispflicht / RP-Manager</h3>
+    <ul>
+      <li>Jeder Charakter braucht einen gültigen Ausweis</li>
+      <li>Ohne gültigen Ausweis ist RP nicht erlaubt</li>
+      <li>Polizei & Behörden dürfen auf Ausweise bestehen</li>
+    </ul>
+
+    <h3><span class="rule-number">2.21</span> Rechnungsannahme</h3>
+    <p>Rechnungen von Staatsfraktionen müssen angenommen werden. Ablehnung = Fail-RP.</p>
+
+    <h2>3. Fraktionsregeln</h2>
+
+    <h3>Polizei</h3>
+    <ul>
+      <li>Nur ausgebildete Polizisten dürfen Einsatzfahrzeuge führen</li>
+      <li>Immer realistisches Verhalten</li>
+      <li>Keine willkürlichen Durchsuchungen/Festnahmen</li>
+      <li>SEK nur mit Ankündigung</li>
+      <li>Bodycams dürfen nicht für Meta missbraucht werden</li>
+    </ul>
+
+    <h3>Feuerwehr / Rettungsdienst</h3>
+    <ul>
+      <li>Nur ausgebildete Personen dürfen RTW/Notarzt fahren</li>
+      <li>Realistische Behandlungen & Kommunikation</li>
+      <li>Notrufe müssen ernst genommen werden</li>
+      <li>Kein Missbrauch von Fahrzeugen oder Blaulicht</li>
+      <li>Sanitäter sind keine Polizei</li>
+    </ul>
+
+    <h2>4. Friedenszeiten</h2>
+
+    <h3>Wann gelten sie?</h3>
+    <p>Nur wenn sie vom Server-Team offiziell ausgerufen wurden (z. B. bei Events).</p>
+
+    <div class="warning-box">
+      <strong>❌ Verboten während Friedenszeiten:</strong>
+      <ul>
+        <li>Überfälle</li>
+        <li>Geiselnahmen</li>
+        <li>Tötungen / Gewalt</li>
+        <li>Eskalationen</li>
+      </ul>
+    </div>
+
+    <div class="success-box">
+      <strong>✅ Erlaubt:</strong>
+      <ul>
+        <li>Kontrollen, normale Einsätze</li>
+        <li>RP ohne Gewalt</li>
+        <li>Zivile Notfälle</li>
+      </ul>
+    </div>
+
+    <div class="warning-box">
+      <p><strong>❗ Verstöße führen zu Verwarnungen oder Banns.</strong></p>
+    </div>
+
+    <h2>5. Team & Support</h2>
+    <ul>
+      <li><span class="rule-number">5.1</span> Den Anweisungen des Teams ist Folge zu leisten</li>
+      <li><span class="rule-number">5.2</span> Supportentscheidungen sind zu akzeptieren</li>
+      <li><span class="rule-number">5.3</span> Diskussionen über Strafen nicht öffentlich führen</li>
+      <li><span class="rule-number">5.4</span> Beweise müssen im Ticket beigefügt werden</li>
+      <li><span class="rule-number">5.5</span> Teammitglieder sind im RP normale Spieler</li>
+    </ul>
+
+    <h2>6. Sanktionen und Konsequenzen</h2>
+    <ul>
+      <li><span class="rule-number">6.1</span> Verstöße führen zu Verwarnungen, Banns etc.</li>
+      <li><span class="rule-number">6.2</span> Wiederholungen = härtere Strafen</li>
+      <li><span class="rule-number">6.3</span> Auch nicht gelistete Verstöße können geahndet werden</li>
+      <li><span class="rule-number">6.4</span> Bann-Umgehung = permanenter Ausschluss</li>
+    </ul>
+
+    <h2>7. Kontakt & Beschwerden</h2>
+    <p>Für Beschwerden oder Support nutze die 🎫 Ticket-Kategorie im Discord. Alle Anfragen werden diskret behandelt.</p>
+
+    <h2>8. Hausrecht & Regelwerkänderungen</h2>
+    
+    <h3><span class="rule-number">8.1</span> Hausrecht</h3>
+    <p>Das Team kann bei Fehlverhalten jederzeit Verwarnungen, Kicks oder Banns aussprechen.</p>
+
+    <h3><span class="rule-number">8.2</span> Änderungen</h3>
+    <p>Das Regelwerk kann jederzeit geändert werden. Jeder Spieler ist selbst verantwortlich, sich auf dem Laufenden zu halten.</p>
+
+    <h2>9. Verbotene Fahrzeuge</h2>
+    <div class="info-box">
+      <p><strong>Diese Regel ist noch nicht gültig</strong></p>
+      <ul>
+        <li>🔵 Yamaha YZF-R1 / Vellfire R1</li>
+        <li>🔵 Ferrari Italia / Maranello Catania</li>
+        <li>🔵 Porsche Taycan / Ferdinand Vivo</li>
+        <li>🔵 Lamborghini Aventador / Silhouette Carbon</li>
+        <li>🔵 Bentley Continental GT / Mauntley National GT</li>
+        <li>🔵 Bugatti Chiron / Strugatti Ettore</li>
+        <li>🔵 VW Passat</li>
+        <li>🔵 Nyberg Eskon</li>
+      </ul>
+    </div>
+
+    <h2>10. Safezones</h2>
+    <div class="success-box">
+      <p><strong>Safezones:</strong></p>
+      <ul>
+        <li>Polizeiwache</li>
+        <li>Feuerwache</li>
+        <li>Krankenhaus</li>
+      </ul>
+      <p><strong>In diesen Zonen ist jegliche Gewalt oder Eskalation verboten.</strong></p>
+    </div>
+
+    <div class="info-box" style="margin-top: 40px; text-align: center;">
+      <p style="font-size: 1.2rem;"><strong>Viel Spaß beim Spielen! 🎮</strong></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Berlin RP VC — Alle Rechte vorbehalten<br>Gruß Albaner & Ratte 💙</p>
+    <p style="margin-top: 10px;"><a href="index.html">Zurück zur Startseite</a> | <a href="impressum.html">Impressum</a></p>
+  </footer>
+</body>
+</html>
